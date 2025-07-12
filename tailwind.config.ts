@@ -109,6 +109,12 @@ export default {
 			fontFamily: {
 				'heading': ['Playfair Display', 'serif'],
 				'body': ['Inter', 'sans-serif']
+			},
+			boxShadow: {
+				'soft': '0 2px 8px hsl(25 35% 15% / 0.08)',
+				'medium': '0 4px 16px hsl(25 35% 15% / 0.12)',
+				'strong': '0 8px 32px hsl(25 35% 15% / 0.16)',
+				'glow': '0 0 24px hsl(var(--primary) / 0.25)'
 			}
 		}
 	},
