@@ -2,41 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Rich Restaurant Theme Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Warm restaurant color palette */
+    --background: 35 25% 98%;
+    --foreground: 25 35% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 35 30% 96%;
+    --card-foreground: 25 35% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 35 30% 96%;
+    --popover-foreground: 25 35% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Rich golden primary colors */
+    --primary: 35 60% 45%;
+    --primary-foreground: 35 25% 98%;
+    --primary-hover: 35 65% 40%;
+    --primary-glow: 35 70% 55%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm secondary colors */
+    --secondary: 25 45% 88%;
+    --secondary-foreground: 25 35% 20%;
+    --secondary-hover: 25 50% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Elegant muted tones */
+    --muted: 30 25% 92%;
+    --muted-foreground: 25 20% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Rich accent colors */
+    --accent: 15 75% 55%;
+    --accent-foreground: 35 25% 98%;
+    --accent-hover: 15 80% 50%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status colors */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 35 25% 98%;
+    --success: 140 60% 45%;
+    --success-foreground: 35 25% 98%;
+    --warning: 45 85% 55%;
+    --warning-foreground: 25 35% 15%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Elegant borders and inputs */
+    --border: 25 25% 85%;
+    --input: 25 25% 90%;
+    --ring: 35 60% 45%;
 
-    --radius: 0.5rem;
+    /* Enhanced radius for classic feel */
+    --radius: 0.75rem;
+
+    /* Food category colors */
+    --veg: 140 60% 45%;
+    --non-veg: 0 75% 55%;
+    --beverage: 210 75% 55%;
+    --dessert: 300 60% 55%;
+
+    /* Gradients for rich visual appeal */
+    --gradient-hero: linear-gradient(135deg, hsl(25 45% 20% / 0.8), hsl(35 35% 25% / 0.9));
+    --gradient-card: linear-gradient(145deg, hsl(35 30% 96%), hsl(35 25% 94%));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-hover)));
+
+    /* Elegant shadows */
+    --shadow-soft: 0 2px 8px hsl(25 35% 15% / 0.08);
+    --shadow-medium: 0 4px 16px hsl(25 35% 15% / 0.12);
+    --shadow-strong: 0 8px 32px hsl(25 35% 15% / 0.16);
+    --shadow-glow: 0 0 24px hsl(var(--primary) / 0.25);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Typography scale */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +140,132 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Button variants for restaurant theme */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground 
+           px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg 
+           transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium 
+           border border-border hover:bg-secondary-hover transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent to-accent-hover text-accent-foreground 
+           px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg 
+           transition-all duration-300 hover:scale-105;
+  }
+
+  /* Card styles */
+  .card-elegant {
+    @apply bg-gradient-to-br from-card to-card/80 border border-border/50 
+           rounded-xl shadow-soft hover:shadow-medium transition-all duration-300;
+  }
+
+  .card-food {
+    @apply card-elegant p-4 hover:scale-105 cursor-pointer group;
+  }
+
+  /* Counter button styles */
+  .counter-btn {
+    @apply w-8 h-8 rounded-full bg-primary text-primary-foreground 
+           flex items-center justify-center font-medium shadow-sm 
+           hover:bg-primary-hover transition-all duration-200 active:scale-95;
+  }
+
+  /* Food category indicators */
+  .indicator-veg {
+    @apply w-4 h-4 border-2 border-veg bg-veg/20 rounded;
+  }
+
+  .indicator-non-veg {
+    @apply w-4 h-4 border-2 border-non-veg bg-non-veg/20 rounded;
+  }
+
+  /* Floating elements */
+  .floating-cart {
+    @apply fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 
+           bg-gradient-to-r from-primary to-primary-glow text-primary-foreground 
+           px-6 py-3 rounded-full shadow-strong hover:shadow-glow 
+           transition-all duration-300 hover:scale-105;
+  }
+
+  /* Hero overlay */
+  .hero-overlay {
+    background: var(--gradient-hero);
+    @apply absolute inset-0 flex items-center justify-center;
+  }
+
+  /* Search and filter styles */
+  .search-input {
+    @apply w-full px-4 py-3 rounded-xl border border-border bg-input/50 
+           backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 
+           focus:border-primary transition-all duration-300;
+  }
+
+  .filter-chip {
+    @apply px-4 py-2 rounded-full border border-border bg-card 
+           hover:bg-primary hover:text-primary-foreground 
+           transition-all duration-300 cursor-pointer;
+  }
+
+  .filter-chip-active {
+    @apply px-4 py-2 rounded-full bg-primary text-primary-foreground 
+           shadow-md border border-primary;
+  }
+
+  /* Animation classes */
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
