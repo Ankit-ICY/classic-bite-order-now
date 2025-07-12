@@ -174,7 +174,7 @@
   }
 
   .card-food {
-    @apply card-elegant p-4 hover:scale-105 cursor-pointer group;
+    @apply card-elegant p-4 hover:scale-105 cursor-pointer;
   }
 
   /* Counter button styles */
