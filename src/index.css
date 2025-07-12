@@ -2,39 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Rich Restaurant Theme Design System - All colors MUST be HSL */
+/* Rich Classical Standard Theme - All colors MUST be HSL */
 
 @layer base {
   :root {
-    /* Warm restaurant color palette */
-    --background: 35 25% 98%;
-    --foreground: 25 35% 15%;
+    /* Classical elegant color palette */
+    --background: 45 15% 97%;
+    --foreground: 210 25% 12%;
 
-    --card: 35 30% 96%;
-    --card-foreground: 25 35% 15%;
+    --card: 45 20% 95%;
+    --card-foreground: 210 25% 12%;
 
-    --popover: 35 30% 96%;
-    --popover-foreground: 25 35% 15%;
+    --popover: 45 20% 95%;
+    --popover-foreground: 210 25% 12%;
 
-    /* Rich golden primary colors */
-    --primary: 35 60% 45%;
-    --primary-foreground: 35 25% 98%;
-    --primary-hover: 35 65% 40%;
-    --primary-glow: 35 70% 55%;
+    /* Rich burgundy and gold primary colors */
+    --primary: 345 65% 35%;
+    --primary-foreground: 45 15% 97%;
+    --primary-hover: 345 70% 30%;
+    --primary-glow: 345 60% 45%;
 
-    /* Warm secondary colors */
-    --secondary: 25 45% 88%;
-    --secondary-foreground: 25 35% 20%;
-    --secondary-hover: 25 50% 85%;
+    /* Classical secondary colors */
+    --secondary: 210 15% 90%;
+    --secondary-foreground: 210 25% 15%;
+    --secondary-hover: 210 20% 87%;
 
-    /* Elegant muted tones */
-    --muted: 30 25% 92%;
-    --muted-foreground: 25 20% 45%;
+    /* Sophisticated muted tones */
+    --muted: 210 10% 93%;
+    --muted-foreground: 210 15% 50%;
 
-    /* Rich accent colors */
-    --accent: 15 75% 55%;
-    --accent-foreground: 35 25% 98%;
-    --accent-hover: 15 80% 50%;
+    /* Rich gold accent colors */
+    --accent: 45 85% 45%;
+    --accent-foreground: 210 25% 12%;
+    --accent-hover: 45 90% 40%;
 
     /* Status colors */
     --destructive: 0 75% 55%;
@@ -44,10 +44,10 @@
     --warning: 45 85% 55%;
     --warning-foreground: 25 35% 15%;
 
-    /* Elegant borders and inputs */
-    --border: 25 25% 85%;
-    --input: 25 25% 90%;
-    --ring: 35 60% 45%;
+    /* Classical borders and inputs */
+    --border: 210 15% 85%;
+    --input: 210 10% 92%;
+    --ring: 345 65% 35%;
 
     /* Enhanced radius for classic feel */
     --radius: 0.75rem;
@@ -58,25 +58,25 @@
     --beverage: 210 75% 55%;
     --dessert: 300 60% 55%;
 
-    /* Gradients for rich visual appeal */
-    --gradient-hero: linear-gradient(135deg, hsl(25 45% 20% / 0.8), hsl(35 35% 25% / 0.9));
-    --gradient-card: linear-gradient(145deg, hsl(35 30% 96%), hsl(35 25% 94%));
+    /* Classical gradients for sophisticated appeal */
+    --gradient-hero: linear-gradient(135deg, hsl(210 40% 15% / 0.85), hsl(345 30% 20% / 0.9));
+    --gradient-card: linear-gradient(145deg, hsl(45 20% 95%), hsl(45 15% 93%));
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-hover)));
 
-    /* Elegant shadows */
-    --shadow-soft: 0 2px 8px hsl(25 35% 15% / 0.08);
-    --shadow-medium: 0 4px 16px hsl(25 35% 15% / 0.12);
-    --shadow-strong: 0 8px 32px hsl(25 35% 15% / 0.16);
-    --shadow-glow: 0 0 24px hsl(var(--primary) / 0.25);
+    /* Refined shadows */
+    --shadow-soft: 0 2px 12px hsl(210 25% 12% / 0.1);
+    --shadow-medium: 0 4px 20px hsl(210 25% 12% / 0.15);
+    --shadow-strong: 0 8px 40px hsl(210 25% 12% / 0.2);
+    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
 
     /* Smooth transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    /* Typography scale */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
+    /* Classical typography scale */
+    --font-heading: 'Arial', 'Helvetica Neue', sans-serif;
+    --font-body: 'Arial', 'Helvetica Neue', sans-serif;
 
     --sidebar-background: 0 0% 98%;
 
@@ -141,10 +141,12 @@
 
   body {
     @apply bg-background text-foreground font-body;
+    font-weight: 400;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+    font-weight: 700;
   }
 }
 
@@ -175,6 +177,10 @@
 
   .card-food {
     @apply card-elegant p-4 hover:scale-105 cursor-pointer;
+  }
+
+  .card-food-mobile {
+    @apply card-elegant p-4 hover:scale-105 cursor-pointer flex gap-4;
   }
 
   /* Counter button styles */

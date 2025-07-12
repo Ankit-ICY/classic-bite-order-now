@@ -2,6 +2,14 @@ import React, { useState, useMemo } from 'react';
 import { Search, Filter, Plus, Minus, ShoppingCart, Leaf, ChefHat } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import heroImage from '@/assets/restaurant-hero.jpg';
+import butterChickenImg from '@/assets/butter-chicken.jpg';
+import dalMakhaniImg from '@/assets/dal-makhani.jpg';
+import margheritaPizzaImg from '@/assets/margherita-pizza.jpg';
+import mangoLassiImg from '@/assets/mango-lassi.jpg';
+import gulabJamunImg from '@/assets/gulab-jamun.jpg';
+import chickenBiryaniImg from '@/assets/chicken-biryani.jpg';
+import paneerTikkaImg from '@/assets/paneer-tikka.jpg';
+import limeSodaImg from '@/assets/lime-soda.jpg';
 
 interface FoodItem {
   id: string;
@@ -23,7 +31,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Main Course',
     group: 'food',
     isVeg: false,
-    image: '🍛'
+    image: butterChickenImg
   },
   {
     id: '2',
@@ -33,7 +41,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Dal',
     group: 'food',
     isVeg: true,
-    image: '🍲'
+    image: dalMakhaniImg
   },
   {
     id: '3',
@@ -43,7 +51,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Pizza',
     group: 'food',
     isVeg: true,
-    image: '🍕'
+    image: margheritaPizzaImg
   },
   {
     id: '4',
@@ -53,7 +61,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Beverages',
     group: 'drink',
     isVeg: true,
-    image: '🥤'
+    image: mangoLassiImg
   },
   {
     id: '5',
@@ -63,7 +71,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Sweets',
     group: 'dessert',
     isVeg: true,
-    image: '🍮'
+    image: gulabJamunImg
   },
   {
     id: '6',
@@ -73,7 +81,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Rice',
     group: 'food',
     isVeg: false,
-    image: '🍚'
+    image: chickenBiryaniImg
   },
   {
     id: '7',
@@ -83,7 +91,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Starter',
     group: 'food',
     isVeg: true,
-    image: '🧀'
+    image: paneerTikkaImg
   },
   {
     id: '8',
@@ -93,7 +101,7 @@ const mockFoodItems: FoodItem[] = [
     category: 'Beverages',
     group: 'drink',
     isVeg: true,
-    image: '🍋'
+    image: limeSodaImg
   }
 ];
 
@@ -264,55 +272,138 @@ export default function FoodMenu() {
       <div className="max-w-7xl mx-auto p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredItems.map((item) => (
-            <div key={item.id} className="card-food animate-scale-in">
-              {/* Food Item Image */}
-              <div className="w-full h-40 bg-gradient-to-br from-muted to-muted/50 rounded-lg mb-4 flex items-center justify-center text-6xl">
-                {item.image}
+            <div key={item.id} className="animate-scale-in">
+              {/* Desktop Layout */}
+              <div className="hidden sm:block card-food">
+                {/* Food Item Image */}
+                <div className="w-full h-40 rounded-lg mb-4 overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Item Info */}
+                <div className="space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-bold text-lg text-foreground">{item.name}</h3>
+                        <div className={item.isVeg ? 'indicator-veg' : 'indicator-non-veg'} />
+                      </div>
+                      
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        <span className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-xs rounded-full">
+                          {item.category}
+                        </span>
+                        <span className="px-2 py-1 bg-accent/20 text-accent-foreground text-xs rounded-full">
+                          {item.group.charAt(0).toUpperCase() + item.group.slice(1)}
+                        </span>
+                      </div>
+                      
+                      <p className="text-muted-foreground text-sm mb-2 line-clamp-2">
+                        {item.description}
+                      </p>
+                      <p className="text-xl font-bold text-primary">₹{item.price}</p>
+                    </div>
+                  </div>
+
+                  {/* Add to Cart Button */}
+                  <div className="flex justify-end">
+                    {cart[item.id] ? (
+                      <div className="flex items-center gap-3 bg-primary/10 rounded-full px-3 py-2">
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          className="counter-btn"
+                        >
+                          <Minus className="w-4 h-4" />
+                        </button>
+                        <span className="font-semibold min-w-[2rem] text-center">
+                          {cart[item.id]}
+                        </span>
+                        <button
+                          onClick={() => addToCart(item.id)}
+                          className="counter-btn"
+                        >
+                          <Plus className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item.id)}
+                        className="btn-primary text-sm px-4 py-2"
+                      >
+                        Add
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
 
-              {/* Item Info */}
-              <div className="space-y-3">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-lg text-foreground">{item.name}</h3>
-                      <div className={item.isVeg ? 'indicator-veg' : 'indicator-non-veg'} />
-                    </div>
-                    <p className="text-muted-foreground text-sm mb-2 line-clamp-2">
-                      {item.description}
-                    </p>
-                    <p className="text-xl font-bold text-primary">₹{item.price}</p>
+              {/* Mobile Layout - Horizontal like Zomato */}
+              <div className="block sm:hidden card-food-mobile">
+                {/* Left Content */}
+                <div className="flex-1 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold text-lg text-foreground">{item.name}</h3>
+                    <div className={item.isVeg ? 'indicator-veg' : 'indicator-non-veg'} />
+                  </div>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1">
+                    <span className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-xs rounded-full">
+                      {item.category}
+                    </span>
+                    <span className="px-2 py-1 bg-accent/20 text-accent-foreground text-xs rounded-full">
+                      {item.group.charAt(0).toUpperCase() + item.group.slice(1)}
+                    </span>
+                  </div>
+                  
+                  <p className="text-muted-foreground text-sm line-clamp-2">
+                    {item.description}
+                  </p>
+                  <p className="text-xl font-bold text-primary">₹{item.price}</p>
+                  
+                  {/* Add to Cart Button */}
+                  <div className="pt-2">
+                    {cart[item.id] ? (
+                      <div className="flex items-center gap-3 bg-primary/10 rounded-full px-3 py-2 w-fit">
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          className="counter-btn"
+                        >
+                          <Minus className="w-4 h-4" />
+                        </button>
+                        <span className="font-semibold min-w-[2rem] text-center">
+                          {cart[item.id]}
+                        </span>
+                        <button
+                          onClick={() => addToCart(item.id)}
+                          className="counter-btn"
+                        >
+                          <Plus className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item.id)}
+                        className="btn-primary text-sm px-4 py-2"
+                      >
+                        Add
+                      </button>
+                    )}
                   </div>
                 </div>
 
-                {/* Add to Cart Button */}
-                <div className="flex justify-end">
-                  {cart[item.id] ? (
-                    <div className="flex items-center gap-3 bg-primary/10 rounded-full px-3 py-2">
-                      <button
-                        onClick={() => removeFromCart(item.id)}
-                        className="counter-btn"
-                      >
-                        <Minus className="w-4 h-4" />
-                      </button>
-                      <span className="font-semibold min-w-[2rem] text-center">
-                        {cart[item.id]}
-                      </span>
-                      <button
-                        onClick={() => addToCart(item.id)}
-                        className="counter-btn"
-                      >
-                        <Plus className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => addToCart(item.id)}
-                      className="btn-primary text-sm px-4 py-2"
-                    >
-                      Add
-                    </button>
-                  )}
+                {/* Right Image */}
+                <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>

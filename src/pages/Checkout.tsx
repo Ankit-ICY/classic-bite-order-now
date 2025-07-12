@@ -149,14 +149,31 @@ export default function Checkout() {
           
           <div className="space-y-4">
             {cartItems.map(({ item, quantity }) => (
-              <div key={item.id} className="flex items-center gap-4 p-4 bg-muted/30 rounded-lg">
-                <div className="text-3xl">{item.image}</div>
-                <div className="flex-1">
-                  <h3 className="font-medium text-foreground">{item.name}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                  <p className="text-lg font-semibold text-primary">₹{item.price}</p>
+              <div key={item.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-muted/30 rounded-lg">
+                <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                  <img 
+                    src={typeof item.image === 'string' && item.image.startsWith('/') ? item.image : item.image} 
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-bold text-foreground">{item.name}</h3>
+                    <div className={item.isVeg ? 'indicator-veg' : 'indicator-non-veg'} />
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
+                  <div className="flex flex-wrap gap-1 mb-2">
+                    <span className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-xs rounded-full">
+                      {item.category}
+                    </span>
+                    <span className="px-2 py-1 bg-accent/20 text-accent-foreground text-xs rounded-full">
+                      {item.group.charAt(0).toUpperCase() + item.group.slice(1)}
+                    </span>
+                  </div>
+                  <p className="text-lg font-bold text-primary">₹{item.price}</p>
+                </div>
+                <div className="flex items-center gap-3 order-last sm:order-none">
                   <button
                     onClick={() => updateCart(item.id, quantity - 1)}
                     className="counter-btn"
@@ -171,8 +188,8 @@ export default function Checkout() {
                     <Plus className="w-4 h-4" />
                   </button>
                 </div>
-                <div className="text-right">
-                  <p className="font-semibold">₹{item.price * quantity}</p>
+                <div className="text-left sm:text-right order-first sm:order-last">
+                  <p className="font-bold text-lg">₹{item.price * quantity}</p>
                 </div>
               </div>
             ))}
