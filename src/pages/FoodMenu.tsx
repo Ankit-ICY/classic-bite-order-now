@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter, Plus, Minus, ShoppingCart, Leaf, ChefHat } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import heroImage from '@/assets/restaurant-hero.jpg';
 import butterChickenImg from '@/assets/butter-chicken.jpg';
 import dalMakhaniImg from '@/assets/dal-makhani.jpg';
@@ -176,6 +177,11 @@ export default function FoodMenu() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Header with Theme Toggle */}
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
         <img 
@@ -193,12 +199,9 @@ export default function FoodMenu() {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Search and Filters */}
-      <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-40 p-4">
-        <div className="max-w-7xl mx-auto space-y-4">
-          {/* Search Bar */}
+        
+        {/* Search Bar - Positioned at bottom center of hero image */}
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-md px-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <input
@@ -206,10 +209,15 @@ export default function FoodMenu() {
               placeholder="Search for dishes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input pl-12"
+              className="w-full px-12 py-3 rounded-xl border border-border bg-background/95 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 shadow-lg"
             />
           </div>
+        </div>
+      </div>
 
+      {/* Filters - moved search to hero section */}
+      <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-40 p-4 mt-8">
+        <div className="max-w-7xl mx-auto space-y-4">
           {/* Controls Row */}
           <div className="flex flex-wrap items-center gap-4">
             {/* Veg Toggle */}
@@ -345,7 +353,7 @@ export default function FoodMenu() {
               {/* Mobile Layout - Horizontal like Zomato */}
               <div className="block sm:hidden card-food-mobile">
                 {/* Left Content */}
-                <div className="flex-1 space-y-2">
+                <div className="flex-1 space-y-2 pr-4">
                   <div className="flex items-center gap-2">
                     <h3 className="font-bold text-lg text-foreground">{item.name}</h3>
                     <div className={item.isVeg ? 'indicator-veg' : 'indicator-non-veg'} />
@@ -397,8 +405,8 @@ export default function FoodMenu() {
                   </div>
                 </div>
 
-                {/* Right Image */}
-                <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">
+                {/* Right Image - Fixed positioning */}
+                <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 self-start">
                   <img 
                     src={item.image} 
                     alt={item.name}
