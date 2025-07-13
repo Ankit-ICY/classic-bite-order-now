@@ -140,12 +140,13 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
+    font-family: 'Arial', 'Helvetica Neue', sans-serif;
     font-weight: 400;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    font-family: 'Arial', 'Helvetica Neue', sans-serif;
     font-weight: 700;
   }
 }

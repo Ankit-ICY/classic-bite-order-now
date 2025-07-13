@@ -201,22 +201,22 @@ export default function FoodMenu() {
         </div>
         
         {/* Search Bar - Positioned at bottom center of hero image */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full max-w-md px-4">
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-6 w-full max-w-2xl px-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <input
               type="text"
               placeholder="Search for dishes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-12 py-3 rounded-xl border border-border bg-background/95 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 shadow-lg"
+              className="w-full px-12 py-4 rounded-xl border border-border bg-background/95 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 shadow-lg font-body text-base"
             />
           </div>
         </div>
       </div>
 
       {/* Filters - moved search to hero section */}
-      <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-40 p-4 mt-8">
+      <div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-40 p-4 mt-12">
         <div className="max-w-7xl mx-auto space-y-4">
           {/* Controls Row */}
           <div className="flex flex-wrap items-center gap-4">
