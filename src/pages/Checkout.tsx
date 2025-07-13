@@ -149,8 +149,8 @@ export default function Checkout() {
           
           <div className="space-y-4">
             {cartItems.map(({ item, quantity }) => (
-              <div key={item.id} className="flex items-start gap-4 p-4 bg-muted/30 rounded-lg">
-                {/* Left Content - Mobile optimized */}
+              <div key={item.id} className="flex items-center gap-4 p-4 bg-muted/30 rounded-lg">
+                {/* Left Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-bold text-foreground">{item.name}</h3>
@@ -167,34 +167,34 @@ export default function Checkout() {
                   </div>
                   <p className="text-lg font-bold text-primary">₹{item.price}</p>
                   
-                  {/* Cart Controls - Mobile layout */}
-                  <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => updateCart(item.id, quantity - 1)}
-                        className="counter-btn"
-                      >
-                        <Minus className="w-4 h-4" />
-                      </button>
-                      <span className="font-semibold min-w-[2rem] text-center">{quantity}</span>
-                      <button
-                        onClick={() => updateCart(item.id, quantity + 1)}
-                        className="counter-btn"
-                      >
-                        <Plus className="w-4 h-4" />
-                      </button>
-                    </div>
-                    <p className="font-bold text-lg">₹{item.price * quantity}</p>
+                  {/* Cart Controls */}
+                  <div className="flex items-center gap-3 mt-3">
+                    <button
+                      onClick={() => updateCart(item.id, quantity - 1)}
+                      className="counter-btn"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="font-semibold min-w-[2rem] text-center">{quantity}</span>
+                    <button
+                      onClick={() => updateCart(item.id, quantity + 1)}
+                      className="counter-btn"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
                 
-                {/* Right Image - Fixed positioning */}
-                <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 self-start">
-                  <img 
-                    src={typeof item.image === 'string' && item.image.startsWith('/') ? item.image : item.image} 
-                    alt={item.name}
-                    className="w-full h-full object-cover"
-                  />
+                {/* Right Side - Image and Total Price */}
+                <div className="flex flex-col items-end gap-3 flex-shrink-0">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden">
+                    <img 
+                      src={typeof item.image === 'string' && item.image.startsWith('/') ? item.image : item.image} 
+                      alt={item.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="font-bold text-lg text-foreground">₹{item.price * quantity}</p>
                 </div>
               </div>
             ))}
